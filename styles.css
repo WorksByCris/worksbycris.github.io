@@ -1,0 +1,517 @@
+/* =========================================================
+   WorksByCris — portfolio template stylesheet
+   Design tokens live at the top. Change colors/fonts here
+   and they update everywhere on the site.
+   ========================================================= */
+
+:root {
+  --bg: #0e0e10;
+  --bg-alt: #18181b;
+  --bg-card: #202024;
+  --accent: #ff6a00;
+  --accent-2: #a1a1aa;
+  --text: #f5f5f4;
+  --text-muted: #9c9ca3;
+  --line: rgba(245, 245, 244, 0.14);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Work Sans", sans-serif;
+
+  --max-width: clamp(1180px, 90vw, 1600px);
+  --gutter: clamp(20px, 4vw, 48px);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0;
+}
+
+p { color: var(--text-muted); }
+
+::selection { background: var(--accent); color: var(--bg); }
+
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+/* ---------- nav ---------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(14, 14, 16, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.brand span { color: var(--text-muted); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  transition: color 0.15s ease;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle svg { width: 26px; height: 26px; }
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(64px, 10vw, 120px);
+  padding-bottom: clamp(56px, 8vw, 96px);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 14, 16, 0.78);
+  z-index: 1;
+}
+
+.hero .wrap {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg { display: none; }
+}
+
+.hero-kicker {
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  max-width: 16ch;
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  margin-top: 24px;
+  max-width: 46ch;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+.hero-actions {
+  margin-top: 36px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-primary:hover { transform: translateY(-2px); }
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.btn-ghost:hover { border-color: var(--text-muted); }
+
+/* ---------- marquee (services) ---------- */
+
+.services {
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: scroll-left 28s linear infinite;
+}
+
+.pill {
+  flex: 0 0 auto;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ---------- work grid ---------- */
+
+.work {
+  padding-top: clamp(64px, 8vw, 100px);
+  padding-bottom: clamp(64px, 8vw, 100px);
+  border-bottom: 1px solid var(--line);
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.section-head h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+}
+
+.section-head p { max-width: 42ch; }
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.work-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none;
+  color: var(--text);
+}
+
+/* A wider, photo-shaped tile that spans the full grid width —
+   use for galleries or anything that isn't square video content. */
+.work-card.feature {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+.thumb {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(155deg, var(--bg-alt), var(--bg-card));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(45deg, rgba(245,245,244,0.03) 0 2px, transparent 2px 14px);
+}
+
+/* Fills the slot when a real video (YouTube/TikTok/etc.) is embedded —
+   see HOW-TO-EDIT.md for ready-to-paste snippets. */
+.thumb iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Sits behind the iframe — only visible if a tracking/ad blocker
+   stops the embed from loading, since a working embed fully covers it. */
+.embed-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px;
+}
+
+.embed-fallback p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  max-width: 26ch;
+  margin: 0;
+}
+
+.play-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-sm);
+  background: rgba(245, 245, 244, 0.12);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+  z-index: 1;
+}
+
+.work-card:hover .play-btn {
+  background: var(--accent);
+  color: var(--bg);
+  transform: scale(1.06);
+}
+
+.play-btn svg { width: 18px; height: 18px; margin-left: 3px; }
+
+.work-meta {
+  position: relative;
+  z-index: 1;
+  padding: 18px 20px;
+  background: linear-gradient(to top, rgba(14,14,16,0.92), rgba(14,14,16,0));
+  pointer-events: none;
+}
+
+.work-meta h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.work-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tag {
+  font-size: 0.78rem;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+}
+
+/* Optional outbound link for embedded cards (see HOW-TO-EDIT.md) */
+.watch-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  pointer-events: auto;
+}
+
+.watch-link:hover { color: var(--accent); }
+
+.replace-note {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.7rem;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-2);
+  color: var(--bg);
+  font-weight: 600;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---------- about ---------- */
+
+.about {
+  padding-top: clamp(64px, 8vw, 100px);
+  padding-bottom: clamp(64px, 8vw, 100px);
+  border-bottom: 1px solid var(--line);
+}
+
+.about .wrap {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(32px, 6vw, 72px);
+  align-items: center;
+}
+
+.about-photo {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  background: linear-gradient(160deg, var(--bg-card), var(--bg-alt));
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 24px;
+  position: relative;
+}
+
+.about h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 20px; }
+
+.about p { font-size: 1.05rem; max-width: 52ch; }
+
+.about p + p { margin-top: 16px; }
+
+/* ---------- contact ---------- */
+
+.contact {
+  padding-top: clamp(64px, 10vw, 120px);
+  padding-bottom: clamp(64px, 10vw, 120px);
+  text-align: left;
+}
+
+.contact h2 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  max-width: 18ch;
+}
+
+.contact-links {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+}
+
+footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+
+  .nav-links.open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--bg-alt);
+    padding: 20px var(--gutter);
+    gap: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .about .wrap { grid-template-columns: 1fr; }
+  .about-photo { max-width: 320px; }
+}
